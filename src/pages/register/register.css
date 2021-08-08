@@ -33,6 +33,7 @@
 
 .loginBox{
     height: 400px;
+    margin-left: 20px;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
@@ -70,7 +71,7 @@
 }
 
 .loginRegisterButton{
-    width: 60%;
+    width: 100%;
     align-self: center;
     height: 50px;
     border-radius: 10px;

@@ -1,6 +1,35 @@
+import { useRef } from "react"
 import "./register.css"
+import axios from 'axios'
+import {Link} from 'react-router-dom'
+import {useHistory} from 'react-router'
 
 export default function Register() {
+    const username = useRef();
+    const email = useRef();
+    const password = useRef();
+    const passwordAgain = useRef();
+    const history = useHistory();
+
+    const handleClick = async (e) =>{
+        e.preventDefault();
+        if(passwordAgain.current.value !== password.current.value){
+            passwordAgain.current.setCustomValidity("Password don't match!");
+        }else{
+            const user = {
+                username: username.current.value,
+                email: email.current.value,
+                password: password.current.value,
+            };
+            try{
+                await axios.post("/auth/register",user);
+                history.push("/login");
+            }catch(err){
+                console.log(err);
+            }
+        }
+    }
+
     return (
         <div className="login">
             <div className="loginWrapper">
@@ -10,15 +39,19 @@ export default function Register() {
                         Connect with friends and the world around you on Connect-O
                     </span>
                 </div>
-                <div className="loginRight">
-                    <div className="loginBox">
-                        <input placeholder="Username" className="loginInput" />
-                        <input placeholder="Email" className="loginInput" />
-                        <input placeholder="Password" className="loginInput" />
-                        <input placeholder="Password Again" className="loginInput" />
-                        <button className="loginButton">Sign Up</button>
-                        <button className="loginRegisterButton">Login into Account</button>
-                    </div>
+                <div className="loginRight"> 
+                    <form className="loginBox" onSubmit={handleClick}>
+                        <input placeholder="Username" className="loginInput" ref={username} required />
+                        <input placeholder="Email" className="loginInput" type="email" ref={email} required />
+                        <input placeholder="Password" className="loginInput" type="password" ref={password} required />
+                        <input placeholder="Password Again" className="loginInput" type="password" ref={passwordAgain} required />
+                        <button className="loginButton" type="submit">Sign Up</button>
+                        <Link to="/login" >
+                            <button className="loginRegisterButton">
+                                Login into Account
+                            </button>
+                        </Link> 
+                    </form>
                 </div>
             </div>
         </div>
