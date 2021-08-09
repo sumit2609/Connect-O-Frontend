@@ -23,7 +23,7 @@ export default function Post({post}) {
 
     useEffect(() =>{
         const fetchUser = async () =>{
-            const res = await axios.get(`https://connect-o.herokuapp.com/users?userId=${post.userId}`);
+            const res = await axios.get(`https://connect-o.herokuapp.com/api/users?userId=${post.userId}`);
             setUser(res.data);
         }  
         fetchUser();
