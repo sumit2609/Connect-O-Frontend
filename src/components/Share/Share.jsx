@@ -16,20 +16,19 @@ export default function Share() {
             userId: user._id,
             desc: desc.current.value
         }
-
+   
         if(file){
             const data = new FormData();
             const fileName = Date.now()+file.name;
-            data.append("file",file)
             data.append("name",fileName)
+            data.append("file",file)
             newPost.img = fileName;
             try{
-                await axios.post("https://connect-o.herokuapp.com/api/upload", data);
+                await axios.post("https://connect-o.herokuapp.com/single", data);
             }catch(err){
                 console.log(err);
             }
         }
-
         try{
             await axios.post("https://connect-o.herokuapp.com/api/posts",newPost);
             window.location.reload();
