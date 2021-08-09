@@ -31,7 +31,7 @@ export default function Post({post}) {
 
     const likeHandler = () =>{
         try{
-            axios.put("https://connect-o.herokuapp.com/posts/"+post._id+"/like",{userId:currentUser._id})
+            axios.put("https://connect-o.herokuapp.com/api/posts/"+post._id+"/like",{userId:currentUser._id})
         }catch(err){
             console.log(err);
         }

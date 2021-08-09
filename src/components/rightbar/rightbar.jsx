@@ -20,7 +20,7 @@ export default function Rightbar({user}) {
     useEffect(()=>{
         const getFriends = async ()=>{
             try{
-                const friendList = await axios.get("https://connect-o.herokuapp.com/users/friends/"+user._id);
+                const friendList = await axios.get("https://connect-o.herokuapp.com/api/users/friends/"+user._id);
                 // console.log(friendList);
                 // console.log(friendList.data);
                 setFriends(friendList.data);
@@ -35,10 +35,10 @@ export default function Rightbar({user}) {
     const handleClick = async () => {
         try{
             if(followed){
-                await axios.put("https://connect-o.herokuapp.com/users/"+user._id+"/unfollow",{userId: currentUser._id});
+                await axios.put("https://connect-o.herokuapp.com/api/users/"+user._id+"/unfollow",{userId: currentUser._id});
                 dispatch({type:"UNFOLLOW",patload:user._id})
             }else{
-                await axios.put("https://connect-o.herokuapp.com/users/"+user._id+"/follow",{userId: currentUser._id});
+                await axios.put("https://connect-o.herokuapp.com/api/users/"+user._id+"/follow",{userId: currentUser._id});
                 dispatch({type:"FOLLOW",patload:user._id})
             }
             

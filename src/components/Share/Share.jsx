@@ -24,14 +24,14 @@ export default function Share() {
             data.append("name",fileName)
             newPost.img = fileName;
             try{
-                await axios.post("https://connect-o.herokuapp.com/upload", data);
+                await axios.post("https://connect-o.herokuapp.com/api/upload", data);
             }catch(err){
                 console.log(err);
             }
         }
 
         try{
-            await axios.post("https://connect-o.herokuapp.com/posts",newPost);
+            await axios.post("https://connect-o.herokuapp.com/api/posts",newPost);
             window.location.reload();
         }catch(err){
             console.log(err);
