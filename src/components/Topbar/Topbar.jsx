@@ -11,6 +11,13 @@ export default function Topbar() {
     // console.log(user.user.profilepicture);
     // const history = useHistory();
 
+    const logoutHandler = (e) =>{
+        e.preventDefault();
+
+        localStorage.clear();
+        window.location.reload(); 
+    }
+
      return (
         <div className="topbarContainer">
             <div className="topbarLeft">
@@ -50,6 +57,10 @@ export default function Topbar() {
                         className="topbarImg" 
                     />
                 </Link>
+                <button className="logoutButton" onClick={logoutHandler} >
+                    Logout
+                </button>
+
             </div>
         </div>
     )
