@@ -11,7 +11,7 @@ export default function Feed({username}) {
 
     useEffect(() =>{
         const fetchPosts = async () =>{
-            const res = username ? await axios.get("/posts/profile/"+username) : await axios.get("posts/timeline/"+user._id);
+            const res = username ? await axios.get("https://connect-o.herokuapp.com/posts/profile/"+username) : await axios.get("https://connect-o.herokuapp.com/posts/timeline/"+user._id);
             // const res = await axios.get("posts/timeline/6102f6609b9a8480dc5b186f");
             setPosts(
                 res.data.sort((p1,p2)=>{
