@@ -18,13 +18,18 @@ export default function Share() {
         }
    
         if(file){
-            const data = new FormData();
-            const fileName = Date.now()+file.name;
-            data.append("name",fileName)
-            data.append("file",file)
-            newPost.img = fileName;
+            // const data = new FormData();
+            // const fileName = Date.now()+file.name;
+            // data.append("name",fileName)
+            // data.append("file",file)
+            // newPost.img = fileName;
+
+            const formdata = new FormData();
+            formdata.append("image", file);
+
             try{
-                await axios.post("https://connect-o.herokuapp.com/single", data);
+                const res = await axios.post("https://connect-o.herokuapp.com/single", data);
+                newPost.img = res.data.data;
             }catch(err){
                 console.log(err);
             }
