@@ -28,7 +28,7 @@ export default function Share() {
             formdata.append("image", file);
 
             try{
-                const res = await axios.post("https://connect-o.herokuapp.com/single", data);
+                const res = await axios.post("https://connect-o.herokuapp.com/single", formdata);
                 newPost.img = res.data.data;
             }catch(err){
                 console.log(err);
